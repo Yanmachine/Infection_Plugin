@@ -12,6 +12,7 @@ import org.bukkit.scoreboard.Team;
 import org.yanmachine.infection.infectionGameUtility.InfectedGameLoop;
 import org.yanmachine.infection.infectionGameUtility.InfectedGlow;
 import org.yanmachine.infection.infectionGameUtility.InfectedPlayerCheck;
+import org.yanmachine.infection.infectionGameUtility.TimeRecorder;
 
 public class InfectedHitListener implements Listener {
 
@@ -55,10 +56,12 @@ public class InfectedHitListener implements Listener {
         team.addEntry(player.getName());
         InfectedGlow.applyGlowingEffect(player);
 
-
+        long elapsedTime = TimeRecorder.getElapsedTimeSeconds();
         Bukkit.broadcastMessage(player.getName() +
-                " was infected");
+                " was " + ChatColor.RED + "infected" + ChatColor.WHITE + " after "
+                + elapsedTime + " seconds");
 
+        Team infectedTeam = scoreboard.getTeam("Infected");
 
     }
 

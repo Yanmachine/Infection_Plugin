@@ -5,7 +5,6 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 public class InfectedPlayerCheck {
-
     public static boolean isPlayerInfected(Player player) {
         Scoreboard scoreboard = player.getScoreboard();
         Team infectedTeam = scoreboard.getTeam("Infected");

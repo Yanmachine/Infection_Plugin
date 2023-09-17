@@ -11,7 +11,9 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.yanmachine.infection.infectionGameUtility.InfectedGameLoop;
 import org.yanmachine.infection.infectionGameUtility.InfectedGlow;
+import org.yanmachine.infection.infectionGameUtility.TimeRecorder;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -56,6 +58,7 @@ public class InfectionCommands implements CommandExecutor {
                     }
                 }
 
+                TimeRecorder.start();
                 Bukkit.broadcastMessage(ChatColor.GOLD + "Infection game started!");
             }
             return true;
