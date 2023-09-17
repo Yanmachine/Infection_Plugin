@@ -6,9 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.yanmachine.infection.infectionGameUtility.InfectedGameLoop;
+import org.yanmachine.infection.infectionGameUtility.InfectedGlow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +20,6 @@ public class InfectionCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-
-        Bukkit.getLogger().info("command read");
 
         if (args.length == 1 && args[0].equalsIgnoreCase("start")){
 
@@ -45,16 +45,18 @@ public class InfectionCommands implements CommandExecutor {
 
                 for (int i = 0; i < onlinePlayers.size(); i++) {
                     Player p = onlinePlayers.get(i);
+                    InfectedGlow.removeGlowingEffect(p);
                     if (i == randomIndex) {
                         infectedTeam.addPlayer(p);
                         p.sendMessage("You are " + ChatColor.RED + "Infected!");
+                        InfectedGlow.applyGlowingEffect(p);
                     } else {
                         uninfectedTeam.addPlayer(p);
                         p.sendMessage("You are " + ChatColor.GREEN + "Uninfected!");
                     }
                 }
 
-                player.sendMessage(ChatColor.GOLD + "Infection game started!");
+                Bukkit.broadcastMessage(ChatColor.GOLD + "Infection game started!");
             }
             return true;
         }
