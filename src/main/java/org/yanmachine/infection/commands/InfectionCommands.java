@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import org.yanmachine.infection.infectionGameUtility.InfectedGameLoop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +21,9 @@ public class InfectionCommands implements CommandExecutor {
 
         Bukkit.getLogger().info("command read");
 
-        /**
-         * /infected start --> begins the game if conditions are met
-         */
         if (args.length == 1 && args[0].equalsIgnoreCase("start")){
 
-            if (sender instanceof Player) {
-                Player player = (Player) sender;
+            if (sender instanceof Player player) {
                 Scoreboard scoreboard = player.getScoreboard();
 
                 Team infectedTeam = scoreboard.getTeam("Infected");
@@ -61,8 +58,10 @@ public class InfectionCommands implements CommandExecutor {
             }
             return true;
         }
-        else if (args.length == 1 && args[0].equalsIgnoreCase("end")) {
-            //END THE GAME
+        else if (args.length == 1 && args[0].equalsIgnoreCase("end") ||
+                args[0].equalsIgnoreCase("stop") ) {
+            InfectedGameLoop game = new InfectedGameLoop();
+            game.endGame();
             return true;
         }
         return true;
