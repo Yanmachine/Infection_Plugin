@@ -3,6 +3,7 @@ package org.yanmachine.infection.infectionGameUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
@@ -26,6 +27,7 @@ public class InfectedGameLoop extends BukkitRunnable {
         Team uninfectedTeam = scoreboard.getTeam("Uninfected");
         for (OfflinePlayer player : infectedTeam.getPlayers()) {
             infectedTeam.removePlayer(player);
+            InfectedGlow.removeGlowingEffect((Player) player);
         }
 
         for (OfflinePlayer player : uninfectedTeam.getPlayers()){
