@@ -1,0 +1,4 @@
+name: Infection
+version: '${version}'
+main: org.yanmachine.infection.Infection
+api-version: '1.20'
