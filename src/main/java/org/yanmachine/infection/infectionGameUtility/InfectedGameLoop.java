@@ -34,6 +34,7 @@ public class InfectedGameLoop extends BukkitRunnable {
             uninfectedTeam.removePlayer(player);
         }
 
+        TimeRecorder.stop();
         Bukkit.broadcastMessage(ChatColor.GOLD + "The game has ended");
     }
 }
