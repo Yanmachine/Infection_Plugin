@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-public class infectionTeams {
+public class InfectionTeams {
     /**
      * Initializes 2 basic teams for the game
      */
