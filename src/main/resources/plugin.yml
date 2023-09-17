@@ -1,6 +1,6 @@
 name: Infection
 version: '${version}'
-main: org.yanmachine.infection.Infection
+main: org.yanmachine.infection.main.Infection
 api-version: '1.20'
 
 commands:
