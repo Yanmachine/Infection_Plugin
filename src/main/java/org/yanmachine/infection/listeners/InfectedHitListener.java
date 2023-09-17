@@ -9,10 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import org.yanmachine.infection.infectionGameUtility.InfectedGameLoop;
-import org.yanmachine.infection.infectionGameUtility.InfectedGlow;
-import org.yanmachine.infection.infectionGameUtility.InfectedPlayerCheck;
-import org.yanmachine.infection.infectionGameUtility.TimeRecorder;
+import org.yanmachine.infection.infectionGameUtility.*;
 
 public class InfectedHitListener implements Listener {
 
@@ -35,7 +32,8 @@ public class InfectedHitListener implements Listener {
                     Team infectedTeam = scoreboard.getTeam("Infected");
 
 
-                    changePlayerTeam(damagedPlayer, infectedTeam);
+                    //changePlayerTeam(damagedPlayer, infectedTeam);
+                    ChangePlayerTeam.makePlayerInfected(damagedPlayer);
 
                     InfectedGameLoop gameCheck = new InfectedGameLoop();
                     gameCheck.run();
@@ -44,25 +42,6 @@ public class InfectedHitListener implements Listener {
                 }
             }
         }
-    }
-
-    private void changePlayerTeam(Player player, Team team){
-        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-        Team currentTeam = scoreboard.getPlayerTeam(player);
-        if (currentTeam != null) {
-            currentTeam.removeEntry(player.getName());
-        }
-
-        team.addEntry(player.getName());
-        InfectedGlow.applyGlowingEffect(player);
-
-        long elapsedTime = TimeRecorder.getElapsedTimeSeconds();
-        Bukkit.broadcastMessage(player.getName() +
-                " was " + ChatColor.RED + "infected" + ChatColor.WHITE + " after "
-                + elapsedTime + " seconds");
-
-        Team infectedTeam = scoreboard.getTeam("Infected");
-
     }
 
 }

@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.yanmachine.infection.commands.InfectionCommands;
 import org.yanmachine.infection.infectionGameUtility.InfectionTeams;
 import org.yanmachine.infection.listeners.InfectedHitListener;
+import org.yanmachine.infection.listeners.PlayerQuitListener;
 
 public final class Infection extends JavaPlugin {
 
@@ -14,6 +15,7 @@ public final class Infection extends JavaPlugin {
 
         //checks for player getting punched
         getServer().getPluginManager().registerEvents(new InfectedHitListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
 
         getCommand("infection").setExecutor(new InfectionCommands());
 
